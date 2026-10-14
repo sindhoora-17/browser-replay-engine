@@ -1,12 +1,12 @@
-# Computer-Use Automation System
+# Browser Replay Engine
 
-A browser automation framework that uses an LLM to discover a workflow once, compiles the successful interaction into a typed capability artifact, and replays it deterministically without an LLM in the execution loop.
+An LLM-assisted browser automation framework that discovers a workflow once, compiles the successful interaction into a typed capability artifact, and replays it deterministically without an LLM in the execution loop.
 
 The project includes a synthetic legacy-style admin application, **Meridian Core Admin**, used to test workflow discovery, replay, recovery, policy enforcement, and human handoff.
 
 ## What it does
 
-The system separates probabilistic workflow discovery from deterministic execution:
+Browser Replay Engine separates probabilistic workflow discovery from deterministic execution:
 
 1. An LLM observes the live browser UI and chooses semantic actions such as `fill`, `click`, and `read`.
 2. Deterministic code inspects the DOM and harvests reusable locator strategies.
