@@ -3,9 +3,9 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "computer-use-automation-system"
+name = "browser-replay-engine"
 version = "0.1.0"
-description = "LLM-discovered, deterministic computer-use automation capabilities"
+description = "LLM-assisted browser workflow discovery with deterministic replay and recovery"
 requires-python = ">=3.11"
 dependencies = [
     "flask",
