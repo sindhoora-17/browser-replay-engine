@@ -1,0 +1,1 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {normalizeStatus} from '../src/api.js';test('API statuses have human readable labels',()=>{assert.equal(normalizeStatus('success'),'Passed');assert.equal(normalizeStatus('failure'),'Failed');assert.equal(normalizeStatus('running'),'Running')});
