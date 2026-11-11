@@ -116,15 +116,15 @@ async def _execute(request_id: str, path: Path, member_id: str, allow_draft: boo
     try:
         artifact = load_artifact(path)
         await surface.start()
-        result = await ReplayEngine(
-            surface, allow_draft=allow_draft, evidence_dir=EVIDENCE
-        ).run(artifact, {"member_id": member_id})
+        engine = ReplayEngine(surface, allow_draft=allow_draft, evidence_dir=EVIDENCE)
+        result = await engine.run(artifact, {"member_id": member_id})
+        if engine.logger is not None:
+            record["engine_run_id"] = engine.logger.run_id
         record["status"] = result.status.value
         record["outcome_code"] = result.outcome_code
         record["error"] = result.error.model_dump() if result.error else None
         # Outputs can contain sensitive values and are intentionally not sent to the UI.
         record["finished_at"] = datetime.now(timezone.utc).isoformat()
-        # Engine logs use their own IDs; find the fresh log from this execution below.
     except Exception as exc:
         record["status"] = "failure"
         record["error"] = {"code": "DASHBOARD_RUN_ERROR", "message": str(exc)}
